@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sara Rosa</title>
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --text: #4b3f2f;
+      --card-bg: #fff8f0;
+      --card-border: #d9a066;
+      --accent: #6d8b74;
+      --footer-bg: #6d8b74;
+    }
+
+    body.dark {
+      --bg: #2e2a26;
+      --text: #f1e8d9;
+      --card-bg: #3b342f;
+      --card-border: #a67852;
+      --accent: #a3c9a8;
+      --footer-bg: #3f4e44;
+    }
+
+    * {
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Trebuchet MS', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    header {
+      background-color: var(--accent);
+      color: #fffef0;
+      padding: 30px 20px;
+      text-align: center;
+      width: 100%;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+
+    .subtitle {
+      font-style: italic;
+      font-size: 1em;
+      margin-top: 5px;
+    }
+
+    .toggle-theme {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      padding: 8px 14px;
+      border: none;
+      border-radius: 20px;
+      background-color: #fffef0;
+      color: var(--accent);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    main {
+      padding: 40px 20px;
+      width: 100%;
+      max-width: 900px;
+      flex: 1;
+      z-index: 1;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .project {
+      background-color: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .project:hover {
+      transform: scale(1.05);
+      background-color: var(--accent);
+    }
+
+    .project a {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      font-weight: bold;
+      font-size: 1.2em;
+      text-align: center;
+      padding: 40px 0;
+    }
+
+    .return-old {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .return-old a {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #fffef0;
+      padding: 12px 24px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: transform 0.3s;
+    }
+
+    .return-old a:hover {
+      transform: scale(1.1);
+    }
+
+    footer {
+      background-color: var(--footer-bg);
+      color: #fffef0;
+      text-align: center;
+      padding: 15px;
+      width: 100%;
+    }
+
+    .emoji-fall {
+      position: fixed;
+      top: -2em;
+      font-size: 1.5em;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .candle {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 3;
+      display: none;
+    }
+
+    body.dark .candle {
+      display: block;
+    }
+
+    .candle-flame {
+      width: 10px;
+      height: 20px;
+      background: radial-gradient(circle, orange, red);
+      border-radius: 50% 50% 50% 50%;
+      animation: flicker 0.2s infinite alternate;
+      margin: auto;
+    }
+
+    @keyframes flicker {
+      from { transform: scaleY(1); opacity: 1; }
+      to { transform: scaleY(1.2); opacity: 0.7; }
+    }
+
+    .moon-phase {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      font-size: 1.5em;
+    }
+
+    .decorative {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.8em;
+      animation: bounce 2s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .critter {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2em;
+      opacity: 0;
+      animation: peek 12s infinite ease-in-out;
+    }
+
+    @keyframes peek {
+      0%, 90%, 100% { opacity: 0; transform: translate(-50%, 0); }
+      45%, 55% { opacity: 1; transform: translate(-50%, -10px); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍁 Um grimório de códigos, ideias e encantos – tudo em um só lugar 🍄📜</h1>
+    <div class="subtitle">Criando com chá de hibisco e HTML ✨🍵🍂</div>
+    <button class="toggle-theme" onclick="toggleTheme()">🌙 Noite</button>
+  </header>
+
+  <div class="moon-phase" id="moon"></div>
+  <div class="candle">
+    <div class="candle-flame"></div>
+  </div>
+  <div class="decorative">🧪</div>
+  <div class="critter">🦝</div>
+
+  <main>
+    <section class="projects">
+      <div class="project">
+        <a href="tabelas/index.html" target="_blank">Tabelas e Calendarios<br><small>Entre datas encantadas e tabelas místicas, meus projetos ganham vida aqui ✨📆🔮</small></a>
+      </div>
+      <div class="project">
+        <a href="forms/index.html" target="_blank">Forms<br><small>Portais mágicos onde você registra ideias, pessoas e encantos 🪄</small>
+        </a>
+      </div>
+    </section>
+
+    <div class="return-old">
+      <a href="">🔙 Voltar para a index antiga</a>
+    </div>
+  </main>
+
+  <footer>
+    Criado com amor, folhas secas e boas vibrações ✨
+  </footer>
+
+  <script>
+    const emojis = ["🍁", "🍂", "🧡", "🍄", "🌰"];
+    for (let i = 0; i < 25; i++) {
+      const emoji = document.createElement("span");
+      emoji.classList.add("emoji-fall");
+      emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      emoji.style.left = `${Math.random() * 100}vw`;
+      emoji.style.animationDuration = `${5 + Math.random() * 10}s`;
+      emoji.style.fontSize = `${1 + Math.random() * 1.5}em`;
+      emoji.style.animationDelay = `${Math.random() * 5}s`;
+      document.body.appendChild(emoji);
+    }
+
+    const body = document.body;
+    const toggleBtn = document.querySelector(".toggle-theme");
+    function applyTheme(theme) {
+      if (theme === "dark") {
+        body.classList.add("dark");
+        toggleBtn.textContent = "☀️ Dia";
+      } else {
+        body.classList.remove("dark");
+        toggleBtn.textContent = "🌙 Noite";
+      }
+    }
+    function toggleTheme() {
+      const currentTheme = body.classList.contains("dark") ? "dark" : "light";
+      const newTheme = currentTheme === "dark" ? "light" : "dark";
+      localStorage.setItem("theme", newTheme);
+      applyTheme(newTheme);
+    }
+    const savedTheme = localStorage.getItem("theme") || "light";
+    applyTheme(savedTheme);
+
+    // Fase da lua simples
+    const moon = document.getElementById("moon");
+    const phases = ["🌑", "🌒", "🌓", "🌔", "🌕", "🌖", "🌗", "🌘"];
+    const day = new Date().getDate();
+    moon.textContent = phases[day % phases.length];
+  </script>
+</body>
+</html>
